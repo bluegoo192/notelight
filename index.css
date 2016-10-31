@@ -1,0 +1,33 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#note {
+  margin: 5px;
+  padding: 6px;
+  background-color: #EEE;
+  display: inline-block;
+  min-width: 20%;
+  position: fixed;
+}
+#note .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#note .header h1 {
+  font-style: normal;
+  line-height: normal;
+  margin: 0;
+}
+#note .content {
+  padding: 5px;
+  background-color: #FDFDFD;
+  border: none;
+
+}
+#note .content:focus {
+  border: 2px solid #3E99FA;
+}

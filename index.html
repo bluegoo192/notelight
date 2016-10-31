@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Notes</title>
+  <link rel="stylesheet" href="index.css">
+	 <meta charset="UTF-8">
+</head>
+
+<body>
+
+	<div id="main">
+
+
+	  <div id="note" draggable="true" v-on:dragstart="test">
+	    <div class="header">
+	      <h1>Test note</h1>
+	      <span>{{ saveStatus }}</span>
+	    </div>
+	    <textarea class="content" v-model="message" placeholder="Enter a note">
+
+	    </textarea>
+	  </div>
+	</div>
+
+
+    <script src="vue.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
