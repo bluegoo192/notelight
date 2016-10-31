@@ -12,19 +12,20 @@
 	<div id="main">
 
 
-	  <div id="note" draggable="true" v-on:dragstart="test">
+	  <div id="note" draggable="true" v-on:dragstart="drag">
 	    <div class="header">
-	      <h1>Test note</h1>
+	      <input class="textbox" v-model="title"></input>
 	      <span>{{ saveStatus }}</span>
 	    </div>
-	    <textarea class="content" v-model="message" placeholder="Enter a note">
+	    <textarea class="content textbox" v-model="content" placeholder="Enter a note">
 
 	    </textarea>
 	  </div>
 	</div>
 
 
-    <script src="vue.js"></script>
+	<script src="util.js"></script>
+  <script src="vue.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

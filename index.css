@@ -5,29 +5,34 @@ html, body {
 
 #note {
   margin: 5px;
-  padding: 6px;
+  padding: 8px;
   background-color: #EEE;
   display: inline-block;
   min-width: 20%;
   position: fixed;
+  border: 1px solid #B8B8B8;
 }
 #note .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
-#note .header h1 {
-  font-style: normal;
-  line-height: normal;
+#note .header input {
   margin: 0;
+  background: none;
+  font-size: 1.3em;
 }
 #note .content {
   padding: 5px;
   background-color: #FDFDFD;
-  border: none;
-
+  width: 90%;
 }
-#note .content:focus {
-  border: 2px solid #3E99FA;
+#note .textbox {
+  border: none;
+}
+#note .textbox:focus {
+  background: #fff;
+  box-shadow: 0px 0px 0px 2px #3E99FA;
 }
