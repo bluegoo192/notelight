@@ -9,14 +9,10 @@
 
 <body>
 
-	<div id="main">
+	<div id="main" @dragover.prevent @drop.prevent="drop">
 
-
-	  <div id="note" draggable="true" v-on:dragstart="drag">
-	    <div class="header">
-	      <input class="textbox" v-model="title"></input>
-	      <span>{{ saveStatus }}</span>
-	    </div>
+	  <div id="note" draggable="true" @dragstart="dragStart" :style="location">
+	    <header-test></header-test>
 	    <textarea class="content textbox" v-model="content" placeholder="Enter a note">
 
 	    </textarea>

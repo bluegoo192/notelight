@@ -1,15 +1,23 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
+#main {
+  height: 100%;
+}
+
+
+
 #note {
+  position: absolute;
   margin: 5px;
   padding: 8px;
   background-color: #EEE;
   display: inline-block;
-  min-width: 20%;
-  position: fixed;
+  min-width: 15%;
+  position: absolute;
   border: 1px solid #B8B8B8;
 }
 #note .header {
@@ -23,6 +31,7 @@ html, body {
   margin: 0;
   background: none;
   font-size: 1.3em;
+  padding-right: 0;
 }
 #note .content {
   padding: 5px;
