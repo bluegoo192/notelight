@@ -1,68 +1,60 @@
-Vue.component('note-page', {
-  template: '<div class="note" draggable="true" @dragstart="dragStart"\
-              @dragend="drop" :style="location">\
-              <div class="header">\
-                <input class="textbox" v-model="title"></input>\
-                <span>{{ saveStatus }}</span>\
-              </div>\
-              <textarea class="content textbox" v-model="content"\
-                placeholder="Enter a note">\
-              </textarea>\
-              <button class="deleteButton" @click="$emit(\'remove\')">\
-                Delete\
-              </button>\
-            </div>',
-  data: function () {
-    return {
-      title: 'New Note',
-      content: '',
-      saveStatus: 'Saved',
-      leftOffset: '0',
-      rightOffset: '0',
-      location: {
-        left: '50px',
-        top: '50px'
-      }
-    }
-  },
-  methods: {
-    dragStart: function (event) {
-      var style = window.getComputedStyle(event.target, null);
-      event.dataTransfer.setData("text/plain",
-      (parseInt(style.getPropertyValue("left"),10) - event.screenX) + ',' +
-      (parseInt(style.getPropertyValue("top"),10) - event.screenY));
-    },
-    save: function () {
-      this.saveStatus = 'Saving...';
-      this.saveStatus = 'Saved';
-    },
-    drop: function(event) {
-      var offset = event.dataTransfer.getData("text/plain").split(',');
-      this.location.left = (event.screenX + parseInt(offset[0],10)) + 'px';
-      this.location.top = (event.screenY + parseInt(offset[1],10)) + 'px';
-      return false;
-    }
-  },
-  watch: {
-    title: function (noteTitle) {
-      this.save();
-    },
-    content: function (noteContent) {
-      this.save();
-    }
-  }
-})
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
+
+var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', routes);
+app.use('/users', users);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
 
 
-var app = new Vue({
-  el: '#main',
-  data: {
-    notes: [
-    ]
-  },
-  methods: {
-    makeNote: function() {
-      this.notes.push('eh');
-    }
-  }
-})
+module.exports = app;
