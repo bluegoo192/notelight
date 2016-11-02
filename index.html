@@ -11,9 +11,7 @@
 
 	<div id="main" @dragover.prevent @drop.prevent>
 	  <note-page v-for="note in notes"></note-page>
-		<div id="actionbar">
-			<button @click="makeNote">New Note</button>
-		</div>
+		<button id="notemaker" @click="makeNote">New Note</button>
 	</div>
 
 

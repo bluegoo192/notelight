@@ -17,8 +17,8 @@ Vue.component('note-page', {
       leftOffset: '0',
       rightOffset: '0',
       location: {
-        left: '10px',
-        top: '10px'
+        left: '50px',
+        top: '50px'
       }
     }
   },
@@ -55,13 +55,12 @@ var app = new Vue({
   el: '#main',
   data: {
     notes: [
-      'placeholder',
-      'placeholder2'
+      'placeholder'
     ]
   },
   methods: {
     makeNote: function() {
-      console.log('stub');
+      this.notes.push('eh');
     }
   }
 })
