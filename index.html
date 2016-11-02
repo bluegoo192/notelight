@@ -9,14 +9,11 @@
 
 <body>
 
-	<div id="main" @dragover.prevent @drop.prevent="drop">
-
-	  <div id="note" draggable="true" @dragstart="dragStart" :style="location">
-	    <header-test></header-test>
-	    <textarea class="content textbox" v-model="content" placeholder="Enter a note">
-
-	    </textarea>
-	  </div>
+	<div id="main" @dragover.prevent @drop.prevent>
+	  <note-page></note-page>
+		<div id="actionbar">
+			<button @click="makeNote">New Note</button>
+		</div>
 	</div>
 
 
