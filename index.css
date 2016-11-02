@@ -9,7 +9,13 @@ html, body {
 }
 
 button#notemaker {
-  padding: 10px;
+  padding: 1px 10px 8px 10px;
+  font-size: 2em;
+  border: none;
+  color: #fff;
+  background-color: #484848;
+} #notemaker:hover {
+  background-color: #222;
 }
 
 
