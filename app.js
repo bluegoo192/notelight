@@ -55,7 +55,8 @@ var app = new Vue({
   el: '#main',
   data: {
     notes: [
-      { text: 'placeholder title' }
+      'placeholder',
+      'placeholder2'
     ]
   },
   methods: {
