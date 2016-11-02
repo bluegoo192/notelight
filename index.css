@@ -47,6 +47,7 @@ button#notemaker {
   padding: 5px;
   background-color: #FDFDFD;
   width: 90%;
+  margin-bottom: 10px;
 }
 .note .textbox {
   border: none;
@@ -54,4 +55,12 @@ button#notemaker {
 .note .textbox:focus {
   background: #fff;
   box-shadow: 0px 0px 0px 2px #3E99FA;
+}
+.note .deleteButton {
+  background-color: #484848;
+  color: #fff;
+  font-size: 1.1em;
+  padding: 5px;
+  border: none;
+  display: block;
 }

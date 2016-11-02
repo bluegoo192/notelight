@@ -8,7 +8,9 @@ Vue.component('note-page', {
               <textarea class="content textbox" v-model="content"\
                 placeholder="Enter a note">\
               </textarea>\
-              <button @click="$emit(\'remove\')">Delete</button>\
+              <button class="deleteButton" @click="$emit(\'remove\')">\
+                Delete\
+              </button>\
             </div>',
   data: function () {
     return {
