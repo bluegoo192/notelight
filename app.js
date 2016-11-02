@@ -8,10 +8,11 @@ Vue.component('note-page', {
               <textarea class="content textbox" v-model="content"\
                 placeholder="Enter a note">\
               </textarea>\
+              <button @click="$emit(\'remove\')">Delete</button>\
             </div>',
   data: function () {
     return {
-      title: 'New Note2',
+      title: 'New Note',
       content: '',
       saveStatus: 'Saved',
       leftOffset: '0',
@@ -55,7 +56,6 @@ var app = new Vue({
   el: '#main',
   data: {
     notes: [
-      'placeholder'
     ]
   },
   methods: {
