@@ -1,3 +1,24 @@
+var STORAGE_KEY = 'notelight-dev'
+var noteStorage = {
+  fetch: function () {
+    var notes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    notes.forEach(function (note, index) {
+      note.id = index;
+    });
+    noteStorage.uid = notes.length;
+    return notes;
+  },
+  save: function (notes) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+  }
+}
+
+var filters = {
+  all: function(notes) {
+    return notes;
+  }
+}
+
 Vue.component('note-page', {
   template: '<div class="note" draggable="true" @dragstart="dragStart"\
               @dragend="drop" :style="location">\
@@ -58,13 +79,24 @@ Vue.component('note-page', {
 var app = new Vue({
   el: '#main',
   data: {
-    notes: [
-      'placeholder'
-    ]
+    notes: noteStorage.fetch()
   },
   methods: {
     makeNote: function() {
-      this.notes.push('eh');
+      this.notes.push({
+        id: noteStorage.uid++,
+        title: 'test title',
+        content: ''
+      });
+      console.log('pushed');
+    }
+  },
+  watch: {
+    notes: {
+      handler: function (notes) {
+        noteStorage.save(notes);
+        console.log(JSON.stringify(notes));
+      }
     }
   }
 })
