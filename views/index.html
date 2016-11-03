@@ -13,9 +13,7 @@
 	  <note-page
 			v-for="(note, index) in notes"
 			v-on:remove="notes.splice(index, 1)"
-			:titleprop="note.title"
-			:contentprop="note.content"
-			:index="index">
+			:note="note">
 		</note-page>
 		<button id="notemaker" @click="makeNote">+</button>
 	</div>

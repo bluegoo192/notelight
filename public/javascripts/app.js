@@ -1,4 +1,5 @@
 var STORAGE_KEY = 'notelight-dev'
+
 var noteStorage = {
   fetch: function () {
     var notes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -20,14 +21,14 @@ var filters = {
 }
 
 Vue.component('note-page', {
-  props: ['titleprop','contentprop','index'],
+  props: ['note'],
   template: '<div class="note" draggable="true" @dragstart="dragStart"\
-              @dragend="drop" :style="location">\
+              @dragend="drop" :style="note.location">\
               <div class="header">\
-                <input class="textbox" v-model="title"></input>\
+                <input class="textbox" v-model="note.title"></input>\
                 <span>{{ saveStatus }}</span>\
               </div>\
-              <textarea class="content textbox" v-model="content"\
+              <textarea class="content textbox" v-model="note.content"\
                 placeholder="Enter a note">\
               </textarea>\
               <button class="deleteButton" @click="$emit(\'remove\')">\
@@ -36,16 +37,8 @@ Vue.component('note-page', {
             </div>',
   data: function () {
     return {
-      title: this.titleprop,
-      content: this.contentprop,
-      myID: this.index,
-      saveStatus: 'Saved',
       leftOffset: '0',
-      rightOffset: '0',
-      location: {
-        left: '50px',
-        top: '50px'
-      }
+      rightOffset: '0'
     }
   },
   methods: {
@@ -55,29 +48,15 @@ Vue.component('note-page', {
       (parseInt(style.getPropertyValue("left"),10) - event.screenX) + ',' +
       (parseInt(style.getPropertyValue("top"),10) - event.screenY));
     },
-    save: function () {
-      this.saveStatus = 'Saving...';
-      console.log(this.myID);
-      this.saveStatus = 'Saved';
-    },
     drop: function(event) {
       var offset = event.dataTransfer.getData("text/plain").split(',');
-      this.location.left = (event.screenX + parseInt(offset[0],10)) + 'px';
-      this.location.top = (event.screenY + parseInt(offset[1],10)) + 'px';
+      this.note.location.left = (event.screenX + parseInt(offset[0],10)) + 'px';
+      this.note.location.top = (event.screenY + parseInt(offset[1],10)) + 'px';
       //console.log('drop at '+ this.location.left + ', ');
       return false;
     }
-  },
-  watch: {
-    title: function (noteTitle) {
-      this.save();
-    },
-    content: function (noteContent) {
-      this.save();
-    }
   }
 })
-
 
 var app = new Vue({
   el: '#main',
@@ -89,7 +68,11 @@ var app = new Vue({
       this.notes.push({
         id: noteStorage.uid++,
         title: 'test title 2',
-        content: 'default content'
+        content: 'default content',
+        location: {
+          left: '100px',
+          top: '100px'
+        }
       });
       console.log('pushed');
     }
@@ -99,7 +82,8 @@ var app = new Vue({
       handler: function (notes) {
         noteStorage.save(notes);
         console.log(JSON.stringify(notes));
-      }
+      },
+      deep: true
     }
   }
 })
