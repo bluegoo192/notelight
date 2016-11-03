@@ -20,6 +20,7 @@ var filters = {
 }
 
 Vue.component('note-page', {
+  props: ['titleprop','contentprop','index'],
   template: '<div class="note" draggable="true" @dragstart="dragStart"\
               @dragend="drop" :style="location">\
               <div class="header">\
@@ -35,8 +36,9 @@ Vue.component('note-page', {
             </div>',
   data: function () {
     return {
-      title: 'New Note',
-      content: '',
+      title: this.titleprop,
+      content: this.contentprop,
+      myID: this.index,
       saveStatus: 'Saved',
       leftOffset: '0',
       rightOffset: '0',
@@ -55,6 +57,7 @@ Vue.component('note-page', {
     },
     save: function () {
       this.saveStatus = 'Saving...';
+      console.log(this.myID);
       this.saveStatus = 'Saved';
     },
     drop: function(event) {
@@ -85,8 +88,8 @@ var app = new Vue({
     makeNote: function() {
       this.notes.push({
         id: noteStorage.uid++,
-        title: 'test title',
-        content: ''
+        title: 'test title 2',
+        content: 'default content'
       });
       console.log('pushed');
     }
