@@ -40,6 +40,7 @@ Vue.component('note-page', {
       var offset = event.dataTransfer.getData("text/plain").split(',');
       this.location.left = (event.screenX + parseInt(offset[0],10)) + 'px';
       this.location.top = (event.screenY + parseInt(offset[1],10)) + 'px';
+      //console.log('drop at '+ this.location.left + ', ');
       return false;
     }
   },
