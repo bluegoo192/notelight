@@ -9,8 +9,9 @@ html, body {
 }
 
 button#notemaker {
-  padding: 1px 10px 8px 10px;
-  font-size: 2em;
+  padding: 0 0.37em 0.22em 0.37em;
+  margin: 10px;
+  font-size: 3em;
   border: none;
   color: #fff;
   background-color: #484848;
@@ -23,44 +24,51 @@ button#notemaker {
 .note {
   position: absolute;
   margin: 5px;
-  padding: 8px;
-  background-color: #EEE;
+  padding: 20px 16px;
+  background-color: #fff;
   display: inline-block;
+  box-shadow: -8px 8px 10px #C5D1D9;
   min-width: 15%;
   position: absolute;
-  border: 1px solid #B8B8B8;
+  border: 1px solid #A5AFB5;
 }
 .note .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .note .header input {
   margin: 0;
   background: none;
   font-size: 1.3em;
-  padding-right: 0;
 }
 .note .content {
-  padding: 5px;
-  background-color: #FDFDFD;
-  width: 90%;
-  margin-bottom: 10px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  width: 95%;
 }
 .note .textbox {
   border: none;
+  padding: 5px;
+  border-bottom: 1px solid #4DA3FF;
+  color: #5D6873;
 }
 .note .textbox:focus {
   background: #fff;
-  box-shadow: 0px 0px 0px 2px #3E99FA;
+  box-shadow: 0px 0px 0px 2px #3A93F2;
+  border: none;
 }
 .note .deleteButton {
-  background-color: #484848;
-  color: #fff;
-  font-size: 1.1em;
-  padding: 5px;
+  color: #3A93F2;
+  font-size: 0.9em;
+  background: none;
   border: none;
   display: block;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: 0;
+} .note .deleteButton:hover {
+  text-decoration: underline;
 }

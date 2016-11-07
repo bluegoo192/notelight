@@ -52,8 +52,11 @@ Vue.component('note-page', {
       var offset = event.dataTransfer.getData("text/plain").split(',');
       this.note.location.left = (event.screenX + parseInt(offset[0],10)) + 'px';
       this.note.location.top = (event.screenY + parseInt(offset[1],10)) + 'px';
-      //console.log('drop at '+ this.location.left + ', ');
+      //validate drop location to stop people from dragging notes offscreen
+      validateLocation();
       return false;
+    },
+    validateLocation: function(event) {
     }
   }
 })
@@ -67,8 +70,9 @@ var app = new Vue({
     makeNote: function() {
       this.notes.push({
         id: noteStorage.uid++,
-        title: 'test title 2',
-        content: 'default content',
+        title: 'Title',
+        content: 'content',
+        zindex: 10,
         location: {
           left: '100px',
           top: '100px'
