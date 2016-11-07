@@ -22,13 +22,12 @@ var filters = {
 
 Vue.component('note-page', {
   props: ['note'],
-  template: '<div class="note" draggable="true" @dragstart="dragStart"\
+  template: '<div class="note" :draggable="draggable" @dragstart="dragStart"\
               @dragend="drop" :style="note.location">\
               <div class="header">\
-                <input class="textbox" v-model="note.title"></input>\
-                <span>{{ saveStatus }}</span>\
+                <input class="textbox" @focus="toggledrag" @blur="toggledrag" v-model="note.title"></input>\
               </div>\
-              <textarea class="content textbox" v-model="note.content"\
+              <textarea class="content textbox" @focus="toggledrag" @blur="toggledrag" v-model="note.content"\
                 placeholder="Enter a note">\
               </textarea>\
               <button class="deleteButton" @click="$emit(\'remove\')">\
@@ -37,6 +36,7 @@ Vue.component('note-page', {
             </div>',
   data: function () {
     return {
+      draggable: true,
       leftOffset: '0',
       rightOffset: '0'
     }
@@ -53,10 +53,12 @@ Vue.component('note-page', {
       this.note.location.left = (event.screenX + parseInt(offset[0],10)) + 'px';
       this.note.location.top = (event.screenY + parseInt(offset[1],10)) + 'px';
       //validate drop location to stop people from dragging notes offscreen
-      validateLocation();
       return false;
     },
-    validateLocation: function(event) {
+    toggledrag: function() {
+      console.log("toggle drag");
+      this.draggable = !this.draggable;
+      console.log("draggable: " + this.draggable);
     }
   }
 })
@@ -85,7 +87,6 @@ var app = new Vue({
     notes: {
       handler: function (notes) {
         noteStorage.save(notes);
-        console.log(JSON.stringify(notes));
       },
       deep: true
     }
