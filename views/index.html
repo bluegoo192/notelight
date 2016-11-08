@@ -10,12 +10,15 @@
 <body>
 
 	<div id="main" @dragover.prevent @drop.prevent>
-	  <note-page
+		<div id="toolbar">
+			<button id="notemaker" @click="makeNote">+</button>
+		</div>
+		<note-page
 			v-for="(note, index) in notes"
 			v-on:remove="notes.splice(index, 1)"
+			v-on:pushdown="pushdown"
 			:note="note">
 		</note-page>
-		<button id="notemaker" @click="makeNote">+</button>
 	</div>
 
 

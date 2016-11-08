@@ -8,9 +8,12 @@ html, body {
   height: 100%;
 }
 
+#toolbar {
+  padding: 10px;
+}
 button#notemaker {
   padding: 0 0.37em 0.22em 0.37em;
-  margin: 10px;
+
   font-size: 3em;
   border: none;
   color: #fff;
@@ -28,7 +31,6 @@ button#notemaker {
   background-color: #fff;
   display: inline-block;
   box-shadow: -8px 8px 10px #C5D1D9;
-  min-width: 15%;
   position: absolute;
   border: 1px solid #A5AFB5;
 }

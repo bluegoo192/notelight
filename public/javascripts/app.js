@@ -23,7 +23,7 @@ var filters = {
 Vue.component('note-page', {
   props: ['note'],
   template: '<div class="note" :draggable="draggable" @dragstart="dragStart"\
-              @dragend="drop" :style="note.location">\
+              @dragend="drop" @click="moveToTop" :style="note.location">\
               <div class="header">\
                 <input class="textbox" @focus="toggledrag" @blur="toggledrag" v-model="note.title"></input>\
               </div>\
@@ -56,9 +56,13 @@ Vue.component('note-page', {
       return false;
     },
     toggledrag: function() {
-      console.log("toggle drag");
       this.draggable = !this.draggable;
-      console.log("draggable: " + this.draggable);
+    },
+    moveToTop: function() {
+      if (parseInt(this.note.location.zIndex, 10) == 10) return;
+      this.note.location.zIndex = '11';
+      console.log(this.note.location.zIndex);
+      this.$emit('pushdown');
     }
   }
 })
@@ -70,17 +74,27 @@ var app = new Vue({
   },
   methods: {
     makeNote: function() {
+      this.pushdown();
       this.notes.push({
         id: noteStorage.uid++,
         title: 'Title',
         content: 'content',
-        zindex: 10,
         location: {
           left: '100px',
-          top: '100px'
+          top: '100px',
+          width: 'auto',
+          height: 'auto',
+          zIndex: '10'
         }
       });
-      console.log('pushed');
+    },
+    pushdown: function () {
+      console.log('pushdown----');
+      this.notes.forEach(function(element) {
+        var intz = parseInt(element.location.zIndex, 10) - 1;
+        element.location.zIndex = intz + '';
+        console.log(element.title + ": " + element.location.zIndex);
+      });
     }
   },
   watch: {
