@@ -29,11 +29,15 @@ button#notemaker {
   margin: 5px;
   padding: 20px 16px;
   background-color: #fff;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   box-shadow: -8px 8px 10px #C5D1D9;
   position: absolute;
   border: 1px solid #A5AFB5;
   animation: slidein 0.1s;
+  resize: both;
+  overflow: auto;
 }
 
 @keyframes slidein {
@@ -57,6 +61,8 @@ button#notemaker {
   background-color: #fff;
   margin-bottom: 20px;
   width: 95%;
+  resize: none;
+  flex-grow: 3;
 }
 .note .textbox {
   border: none;
