@@ -54,6 +54,7 @@ Vue.component('note-page', {
       this.note.location.left = (event.screenX + parseInt(offset[0],10)) + 'px';
       this.note.location.top = (event.screenY + parseInt(offset[1],10)) + 'px';
       //validate drop location to stop people from dragging notes offscreen
+      this.validateLocation();
       return false;
     },
     toggledrag: function() {
@@ -62,8 +63,19 @@ Vue.component('note-page', {
     moveToTop: function() {
       if (parseInt(this.note.location.zIndex, 10) == 10) return;
       this.note.location.zIndex = '11';
-      console.log(this.note.location.zIndex);
       this.$emit('pushdown');
+    },
+    validateLocation: function () {
+      if (parseInt(this.note.location.left, 10) < 0) {
+        this.note.location.left = '0px';
+      } else if (parseInt(this.note.location.left, 10) > (window.innerWidth - 100)) {
+        this.note.location.left = (window.innerWidth - 200) + 'px';
+      }
+      if (parseInt(this.note.location.top, 10) < 0) {
+        this.note.location.top = '0px';
+      } else if (parseInt(this.note.location.top, 10) > (window.innerHeight - 100)) {
+        this.note.location.top = (window.innerHeight - 200) + 'px';
+      }
     }
   }
 })
@@ -90,11 +102,9 @@ var app = new Vue({
       });
     },
     pushdown: function () {
-      console.log('pushdown----');
       this.notes.forEach(function(element) {
         var intz = parseInt(element.location.zIndex, 10) - 1;
         element.location.zIndex = intz + '';
-        console.log(element.title + ": " + element.location.zIndex);
       });
     }
   },
