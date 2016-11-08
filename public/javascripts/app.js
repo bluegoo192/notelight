@@ -43,6 +43,7 @@ Vue.component('note-page', {
   },
   methods: {
     dragStart: function (event) {
+      this.moveToTop();
       var style = window.getComputedStyle(event.target, null);
       event.dataTransfer.setData("text/plain",
       (parseInt(style.getPropertyValue("left"),10) - event.screenX) + ',' +
