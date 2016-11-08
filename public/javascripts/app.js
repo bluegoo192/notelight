@@ -11,6 +11,7 @@ var noteStorage = {
   },
   save: function (notes) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+    noteStorage.uid = notes.length;
   }
 }
 

@@ -33,7 +33,14 @@ button#notemaker {
   box-shadow: -8px 8px 10px #C5D1D9;
   position: absolute;
   border: 1px solid #A5AFB5;
+  animation: slidein 0.1s;
 }
+
+@keyframes slidein {
+  from { transform: translateY(-70px); }
+  to   { transform: translateY(0px); }
+}
+
 .note .header {
   display: flex;
   flex-direction: row;
