@@ -26,9 +26,9 @@ Vue.component('note-page', {
   template: '<div class="note" :draggable="draggable" @dragstart="dragStart"\
               @dragend="drop" @click="moveToTop" :style="note.location">\
               <div class="header">\
-                <input class="textbox" @focus="toggledrag" @blur="toggledrag" v-model="note.title"></input>\
+                <input class="textbox" @focus="toggledrag" @blur="toggledrag" v-model.lazy="note.title"></input>\
               </div>\
-              <textarea class="content textbox" @focus="toggledrag" @blur="toggledrag" v-model="note.content"\
+              <textarea class="content textbox" @focus="toggledrag" @blur="toggledrag" v-model.lazy="note.content"\
                 placeholder="Enter a note">\
               </textarea>\
               <button class="deleteButton" @click="$emit(\'remove\')">\
@@ -44,7 +44,7 @@ Vue.component('note-page', {
   },
   methods: {
     dragStart: function (event) {
-      this.moveToTop();
+      this.moveToTop(event);
       var style = window.getComputedStyle(event.target, null);
       event.dataTransfer.setData("text/plain",
       (parseInt(style.getPropertyValue("left"),10) - event.screenX) + ',' +
@@ -61,7 +61,10 @@ Vue.component('note-page', {
     toggledrag: function() {
       this.draggable = !this.draggable;
     },
-    moveToTop: function() {
+    moveToTop: function(event) {
+      var style = window.getComputedStyle(this.$el, null);
+      this.note.location.width = style.getPropertyValue("width");
+      this.note.location.height = style.getPropertyValue("height");
       if (parseInt(this.note.location.zIndex, 10) == 10) return;
       this.note.location.zIndex = '11';
       this.$emit('pushdown');
