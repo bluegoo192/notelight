@@ -35,14 +35,26 @@ button#notemaker {
   box-shadow: -8px 8px 10px #C5D1D9;
   position: absolute;
   border: 1px solid #A5AFB5;
-  animation: slidein 0.1s;
   resize: both;
   overflow: auto;
 }
+.newnote {
+  animation: entrance .3s;
+}
 
-@keyframes slidein {
-  from { transform: translateY(-70px); }
-  to   { transform: translateY(0px); }
+@keyframes entrance {
+  0% {
+    opacity: 0.1;
+    transform: scale(0.2, 0.2);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.4, 1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
 }
 
 .note .header {

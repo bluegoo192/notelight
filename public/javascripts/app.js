@@ -23,7 +23,7 @@ var filters = {
 
 Vue.component('note-page', {
   props: ['note'],
-  template: '<div class="note" :draggable="draggable" @dragstart="dragStart"\
+  template: '<div class="note" :class="{ newnote: note.isNew }" :draggable="draggable" @dragstart="dragStart"\
               @dragend="drop" @click="moveToTop" :style="note.location">\
               <div class="header">\
                 <input class="textbox" @focus="toggledrag" @blur="toggledrag" v-model.lazy="note.title"></input>\
@@ -56,6 +56,7 @@ Vue.component('note-page', {
       this.note.location.top = (event.screenY + parseInt(offset[1],10)) + 'px';
       //validate drop location to stop people from dragging notes offscreen
       this.validateLocation();
+      this.note.isNew = false;
       return false;
     },
     toggledrag: function() {
@@ -96,6 +97,7 @@ var app = new Vue({
         id: noteStorage.uid++,
         title: 'Title',
         content: 'content',
+        isNew: true,
         location: {
           left: '100px',
           top: '100px',
