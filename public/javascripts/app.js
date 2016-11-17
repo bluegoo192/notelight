@@ -88,7 +88,11 @@ Vue.component('note-page', {
 var app = new Vue({
   el: '#main',
   data: {
-    notes: noteStorage.fetch()
+    notes: noteStorage.fetch(),
+    showProfileBox: true
+  },
+  mounted: function () {
+    this.howProfileBox = true;
   },
   methods: {
     makeNote: function() {
