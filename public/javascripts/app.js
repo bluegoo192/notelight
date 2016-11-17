@@ -26,9 +26,9 @@ Vue.component('note-page', {
   template: '<div class="note" :class="{ newnote: note.isNew }" :draggable="draggable" @dragstart="dragStart"\
               @dragend="drop" @click="moveToTop" :style="note.location">\
               <div class="header">\
-                <input class="textbox" @focus="toggledrag" @blur="toggledrag" v-model.lazy="note.title"></input>\
+                <input class="textbox" @focus="toggledrag" @blur="toggledrag" v-model="note.title"></input>\
               </div>\
-              <textarea class="content textbox" @focus="toggledrag" @blur="toggledrag" v-model.lazy="note.content"\
+              <textarea class="content textbox" @focus="toggledrag" @blur="toggledrag" v-model="note.content"\
                 placeholder="Enter a note">\
               </textarea>\
               <button class="deleteButton" @click="$emit(\'remove\')">\
