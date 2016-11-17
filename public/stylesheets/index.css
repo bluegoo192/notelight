@@ -38,15 +38,27 @@ button#notemaker {
 }
 
 .closeX {
-  width: 30px;
-  height: 30px;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
   border-radius: 15px;
-  background: #fff;
-  border: 1px solid #E60505;
   position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 10;
+  top: -10px;
+  right: -10px;
+  text-align: center;
+  color: #000;
+  border: 2px solid #3D3C36;
+  visibility: hidden;
+  user-select: none;
+  -moz-user-select: none;
+  font-weight: bold;
+  cursor: pointer;
+} .profilebox:hover .closeX {
+  visibility: visible;
+} .closeX:hover {
+  background-color: #E60505;
+  color: #fff;
+  border-color: #E60505;
 }
 
 .note {
