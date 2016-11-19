@@ -26,15 +26,22 @@ button#notemaker {
 }
 .profilebox {
   border: 2px solid #FADB11;
-  background-color: rgba(250,219,17,0.1);
+  background-color: rgb(255,252,230);
   color: #3D3C36;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   padding: 5px 15px;
+  z-index: 20;
   position: relative;
 } .profilebox a {
   color: inherit;
   font: inherit;
   text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #FADB11;
+  padding: 5px 10px;
+} .profilebox a:hover {
+  background-color: #FADB11;
+  color: #fff;
 }
 
 .closeX {
