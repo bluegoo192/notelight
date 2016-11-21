@@ -11,7 +11,12 @@
 
 	<div id="main" @dragover.prevent @drop.prevent>
 		<div id="toolbar">
-			<button id="notemaker" @click="makeNote">+</button>
+			<div>
+				<button id="notemaker" @click="makeNote">+</button>
+				<div v-for="folder in folders" class="existing folder">
+					<p>hi</p>
+				</div>
+			</div>
 			<div v-if="showProfileBox" class="profilebox">
 				<p>You are not signed in.  Notes will be stored locally.</p>
 				<p><a href="#">Sign in</a> or <a href="#">Sign up</a></p>

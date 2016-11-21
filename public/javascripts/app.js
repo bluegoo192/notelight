@@ -108,7 +108,8 @@ var app = new Vue({
   el: '#main',
   data: {
     notes: noteStorage.fetch(),
-    showProfileBox: true
+    showProfileBox: true,
+    folders: []
   },
   mounted: function () {
     this.howProfileBox = true;
