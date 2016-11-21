@@ -148,3 +148,17 @@ button#notemaker {
 } .note .deleteButton:hover {
   text-decoration: underline;
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #9EA6A8;
+  padding: 20px;
+} footer a {
+  color: #9EA6A8;
+  padding-right: 15px;
+  text-decoration: none;
+} footer a:hover {
+  text-decoration: underline;
+}
