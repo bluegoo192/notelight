@@ -11,10 +11,13 @@
 
 	<div id="main" @dragover.prevent @drop.prevent>
 		<div id="toolbar">
-			<div>
+			<div class="simple-flex">
 				<button id="notemaker" @click="makeNote">+</button>
 				<div v-for="folder in folders" class="existing folder">
 					<p>hi</p>
+				</div>
+				<div class="new folder">
+					<p>+</p>
 				</div>
 			</div>
 			<div v-if="showProfileBox" class="profilebox">

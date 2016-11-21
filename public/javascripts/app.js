@@ -1,8 +1,9 @@
-var STORAGE_KEY = 'notelight-dev'
+var NOTE_STORAGE_KEY = 'notelight-dev-notes'
+var FOLDER_STORAGE_KEY = 'notelight-dev-folders'
 
 var noteStorage = {
   fetch: function () {
-    var notes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    var notes = JSON.parse(localStorage.getItem(NOTE_STORAGE_KEY) || '[]');
     notes.forEach(function (note, index) {
       note.id = index;
     });
@@ -10,8 +11,23 @@ var noteStorage = {
     return notes;
   },
   save: function (notes) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+    localStorage.setItem(NOTE_STORAGE_KEY, JSON.stringify(notes));
     noteStorage.uid = notes.length;
+  }
+}
+
+var folderStorage = {
+  fetch: function () {
+    var folders = JSON.parse(localStorage.getItem(FOLDER_STORAGE_KEY) || '[]');
+    folders.forEach(function (folder, index) {
+      folder.id = index;
+    });
+    folderStorage.uid = folders.length;
+    return folders;
+  },
+  save: function (folders) {
+    localStorage.setItem(FOLDER_STORAGE_KEY, JSON.stringify(folders));
+    folderStorage.uid = folders.length;
   }
 }
 
@@ -108,8 +124,8 @@ var app = new Vue({
   el: '#main',
   data: {
     notes: noteStorage.fetch(),
-    showProfileBox: true,
-    folders: []
+    folders: folderStorage.fetch(),
+    showProfileBox: true
   },
   mounted: function () {
     this.howProfileBox = true;
@@ -142,6 +158,12 @@ var app = new Vue({
     notes: {
       handler: function (notes) {
         noteStorage.save(notes);
+      },
+      deep: true
+    },
+    folders: {
+      handler: function (folders) {
+        folderStorage.save(folders);
       },
       deep: true
     }

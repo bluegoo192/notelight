@@ -8,6 +8,10 @@ html, body {
   height: 100%;
 }
 
+.simple-flex {
+  display: flex;
+}
+
 #toolbar {
   padding: 10px;
   display: flex;
@@ -42,6 +46,19 @@ button#notemaker {
 } .profilebox a:hover {
   background-color: #FADB11;
   color: #fff;
+}
+
+.folder {
+  padding: 5px;
+  margin-left: 10px;
+  min-width: 5vw;
+  text-align: center;
+} .existing {
+  background-color: #969C9E;
+} .existing p {
+  background-color: #fff;
+} .new {
+  border: 3px dashed #969C9E;
 }
 
 .closeX {
