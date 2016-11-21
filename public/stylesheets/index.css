@@ -49,16 +49,28 @@ button#notemaker {
 }
 
 .folder {
-  padding: 5px;
   margin-left: 10px;
   min-width: 5vw;
+  position: relative;
   text-align: center;
 } .existing {
   background-color: #969C9E;
-} .existing p {
+  border: 1px solid #969C9E;
+} .existing h2 {
   background-color: #fff;
+  padding: 5px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+} .existing p {
+  color: #fff;
+  font-size: 1.5em;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 } .new {
-  border: 3px dashed #969C9E;
+  border: 4px dashed #969C9E;
+  border-radius: 10px;
 }
 
 .closeX {
@@ -83,6 +95,11 @@ button#notemaker {
   background-color: #E60505;
   color: #fff;
   border-color: #E60505;
+}
+
+.centered {
+  display: table;
+  margin: auto;
 }
 
 .note {

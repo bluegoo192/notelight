@@ -14,7 +14,8 @@
 			<div class="simple-flex">
 				<button id="notemaker" @click="makeNote">+</button>
 				<div v-for="folder in folders" class="existing folder">
-					<p>hi</p>
+					<h2>{{ folder.name }}</h2>
+					<p>+</p>
 				</div>
 				<div class="new folder">
 					<p>+</p>

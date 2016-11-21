@@ -147,6 +147,13 @@ var app = new Vue({
         }
       });
     },
+    makeFolder: function (note) {
+      this.folders.push({
+        id: folderStorage.uid++,
+        name: "new folder",
+        contents: [note]
+      });
+    },
     pushdown: function () {
       this.notes.forEach(function(element) {
         var intz = parseInt(element.location.zIndex, 10) - 1;
