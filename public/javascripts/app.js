@@ -76,16 +76,7 @@ Vue.component('note-page', {
       console.log("LEFT: " + style.getPropertyValue("left") + "  RIGHT: " +style.getPropertyValue("right"));
       console.log(parseInt(style.getPropertyValue("right"), 10));
       //console.log(style);
-    /*  if (parseInt(this.note.location.left, 10) < 0) {
-        this.note.location.left = '0px';
-      } else if ( parseInt(style.getPropertyValue("right"), 10) < 0 ) {
-        this.note.location.left = (window.innerHeight - parseInt(style.getPropertyValue("left"),10), 10)) + 'px';
-      }
-      if (parseInt(this.note.location.top, 10) < 0) {
-        this.note.location.top = '0px';
-      } else if (parseInt(style.getPropertyValue("bottom"), 10) < 0 ) {
-        this.note.location.top = (window.innerHeight - parseInt(style.getPropertyValue("height"),10), 10)) + 'px';
-      }*/
+      this.validateLocation();
       this.note.isNew = false;
       return false;
     },
@@ -101,20 +92,15 @@ Vue.component('note-page', {
       this.$emit('pushdown');
     },
     validateLocation: function () {
-      var style = window.getComputedStyle(this.$el, null);
-      console.log("LEFT: " + style.getPropertyValue("left") + "  RIGHT: " +style.getPropertyValue("right"));
-      //console.log(style);
       if (parseInt(this.note.location.left, 10) < 0) {
         this.note.location.left = '0px';
-      } else if (parseInt(style.getPropertyValue("right"), 10) < 0 ) {
-        //this.note.location.left = 0 + 'px';
-
-        //console.log(this.note.location.left+ " width: " + this.note.location.width);
+      } else if ( parseInt(this.note.location.left, 10) > (window.innerWidth - 200) ) {
+        this.note.location.left = (window.innerWidth - 200) + 'px';
       }
       if (parseInt(this.note.location.top, 10) < 0) {
         this.note.location.top = '0px';
-      } else if (parseInt(style.getPropertyValue("top"), 10) < 0 ) {
-        //this.note.location.top = (window.innerHeight - parseInt(style.getPropertyValue("height"),10), 10)) + 'px';
+      } else if ( parseInt(this.note.location.top, 10) > (window.innerHeight - 200) ) {
+        this.note.location.top = (window.innerHeight - 200) + 'px';
       }
     }
   }

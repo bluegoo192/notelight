@@ -15,6 +15,7 @@
 				<button id="notemaker" @click="makeNote">+</button>
 				<div v-for="folder in folders" class="existing folder">
 					<input v-model="folder.name"></input>
+					<h2>{{ folders.length }}</h2>
 					<p>+</p>
 				</div>
 				<div class="new folder">
