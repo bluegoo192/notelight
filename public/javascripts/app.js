@@ -124,6 +124,7 @@ var app = new Vue({
         title: 'Title',
         content: 'content',
         isNew: true,
+        folders: [],
         location: {
           left: '100px',
           top: '100px',
