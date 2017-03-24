@@ -13,12 +13,13 @@
 		<div id="toolbar">
 			<div class="simple-flex">
 				<button id="notemaker" @click="makeNote">+</button>
+				
 				<div v-for="folder in folders" class="existing folder">
 					<input v-model="folder.name"></input>
 					<h2>{{ folders.length }}</h2>
-					<p>+</p>
+					<p>v</p>
 				</div>
-				<div class="new folder">
+				<div class="new folder vertical-flex" @click="makeFolder">
 					<p>+</p>
 				</div>
 			</div>

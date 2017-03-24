@@ -12,6 +12,12 @@ html, body {
   display: flex;
 }
 
+.vertical-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 #toolbar {
   padding: 10px;
   display: flex;
@@ -20,7 +26,7 @@ html, body {
 }
 button#notemaker {
   padding: 0 0.5em 0.22em 0.5em;
-
+  cursor: pointer;
   font-size: 3em;
   border: none;
   color: #fff;
@@ -77,6 +83,12 @@ button#notemaker {
 } .new {
   border: 4px dashed #969C9E;
   border-radius: 10px;
+  cursor: pointer;
+} .new p {
+  font-size: 3em;
+  margin: 0;
+  font-weight: bold;
+  color: #969C9E;
 }
 
 .closeX {
