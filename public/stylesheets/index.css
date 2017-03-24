@@ -107,7 +107,7 @@ button#notemaker {
   -moz-user-select: none;
   font-weight: bold;
   cursor: pointer;
-} .profilebox:hover .closeX {
+} .profilebox:hover .closeX, .existing:hover .closeX {
   visibility: visible;
 } .closeX:hover {
   background-color: #E60505;

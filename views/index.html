@@ -15,8 +15,9 @@
 				<button id="notemaker" @click="makeNote">+</button>
 				
 				<div v-for="folder in folders" class="existing folder">
+					<span @click="deleteFolder(folder)" class="closeX">&times;</span>
 					<input v-model="folder.name"></input>
-					<h2>{{ folders.length }}</h2>
+					<h2>{{ folder.length }}</h2>
 					<p>v</p>
 				</div>
 				<div class="new folder vertical-flex" @click="makeFolder">

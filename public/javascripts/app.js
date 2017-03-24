@@ -140,6 +140,9 @@ var app = new Vue({
         contents: [note]
       });
     },
+    deleteFolder: function (folder) {
+      this.folders.splice(this.folders.indexOf(folder), 1);
+    },
     pushdown: function () {
       this.notes.forEach(function(element) {
         var intz = parseInt(element.location.zIndex, 10) - 1;
