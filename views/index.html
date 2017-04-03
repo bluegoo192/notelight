@@ -12,13 +12,13 @@
 	<div id="main" @dragover.prevent @drop.prevent>
 		<div id="toolbar">
 			<div class="simple-flex">
-				<button id="notemaker" @click="makeNote">+</button>
-				<div v-for="folder in folders" class="existing folder">
+				<button id="notemaker" class="pointer" @click="makeNote">+</button>
+				<div v-for="folder in folders" @drop="addNote(folder)" class="existing folder pointer">
 					<input v-model="folder.name"></input>
-					<h2>{{ folders.length }}</h2>
+					<h2>{{ folder.contents.length }}</h2>
 					<p>+</p>
 				</div>
-				<div class="new folder">
+				<div class="new folder pointer">
 					<p>+</p>
 				</div>
 			</div>

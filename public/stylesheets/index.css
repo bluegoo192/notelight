@@ -10,6 +10,8 @@ html, body {
 
 .simple-flex {
   display: flex;
+} .pointer {
+  cursor: pointer;
 }
 
 #toolbar {
@@ -77,6 +79,14 @@ button#notemaker {
 } .new {
   border: 4px dashed #969C9E;
   border-radius: 10px;
+  color: #969C9E;
+} .new p {
+  font-size: 3.5em;
+  color: inherit;
+  margin: 0;
+} .new:hover {
+  color: #3A93F2;
+  border: 4px dashed #3A93F2;
 }
 
 .closeX {

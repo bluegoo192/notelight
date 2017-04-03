@@ -65,6 +65,7 @@ Vue.component('note-page', {
       event.dataTransfer.setData("text/plain",
       (parseInt(style.getPropertyValue("left"),10) - event.screenX) + ',' +
       (parseInt(style.getPropertyValue("top"),10) - event.screenY));
+      this.$emit("dragStart");
       //console.log(parseInt(this.note.location.width.slice(0, -2), 10));
     },
     drop: function(event) {
@@ -73,8 +74,8 @@ Vue.component('note-page', {
       this.note.location.left = (event.screenX + parseInt(offset[0],10)) + 'px';
       this.note.location.top = (event.screenY + parseInt(offset[1],10)) + 'px';
       //validate drop location to stop people from dragging notes offscreen
-      console.log("LEFT: " + style.getPropertyValue("left") + "  RIGHT: " +style.getPropertyValue("right"));
-      console.log(parseInt(style.getPropertyValue("right"), 10));
+      //console.log("LEFT: " + style.getPropertyValue("left") + "  RIGHT: " +style.getPropertyValue("right"));
+      //console.log(parseInt(style.getPropertyValue("right"), 10));
       //console.log(style);
       this.validateLocation();
       this.note.isNew = false;
@@ -145,6 +146,9 @@ var app = new Vue({
         var intz = parseInt(element.location.zIndex, 10) - 1;
         element.location.zIndex = intz + '';
       });
+    },
+    addNote: function (target) {
+      console.log(JSON.stringify(target));
     }
   },
   watch: {
