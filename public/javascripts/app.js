@@ -125,6 +125,7 @@ var app = new Vue({
         title: 'Title',
         content: 'content',
         isNew: true,
+        folders: [],
         location: {
           left: '100px',
           top: '100px',
@@ -140,6 +141,9 @@ var app = new Vue({
         name: "new folder",
         contents: [note]
       });
+    },
+    deleteFolder: function (folder) {
+      this.folders.splice(this.folders.indexOf(folder), 1);
     },
     pushdown: function () {
       this.notes.forEach(function(element) {
