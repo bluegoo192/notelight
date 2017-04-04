@@ -41,6 +41,9 @@ Vue.component('note-page', {
   props: ['note'],
   template: '<div class="note" :class="{ newnote: note.isNew }" :draggable="draggable" @dragstart="dragStart"\
               @dragend="drop" @click="moveToTop" :style="note.location">\
+              <div class="folders">\
+                <span v-for="folder in note.folders">test</span>\
+              </div>\
               <div class="header">\
                 <input class="textbox" @focus="toggledrag" @blur="toggledrag" v-model="note.title"></input>\
               </div>\
@@ -63,8 +66,8 @@ Vue.component('note-page', {
       this.moveToTop(event);
       var style = window.getComputedStyle(event.target, null);
       event.dataTransfer.setData("text/plain",
-      (parseInt(style.getPropertyValue("left"),10) - event.screenX) + ',' +
-      (parseInt(style.getPropertyValue("top"),10) - event.screenY));
+        (parseInt(style.getPropertyValue("left"),10) - event.screenX) + ',' +
+        (parseInt(style.getPropertyValue("top"),10) - event.screenY));
       this.$emit("dragStart");
       //console.log(parseInt(this.note.location.width.slice(0, -2), 10));
     },
@@ -90,7 +93,7 @@ Vue.component('note-page', {
       this.note.location.height = style.getPropertyValue("height");
       if (parseInt(this.note.location.zIndex, 10) == 10) return;
       this.note.location.zIndex = '11';
-      this.$emit('pushdown');
+      this.$emit('pushdown', this.note.id);
     },
     validateLocation: function () {
       if (parseInt(this.note.location.left, 10) < 0) {
@@ -111,6 +114,7 @@ var app = new Vue({
   el: '#main',
   data: {
     notes: noteStorage.fetch(),
+    active: 0,
     folders: folderStorage.fetch(),
     showProfileBox: true
   },
@@ -134,25 +138,34 @@ var app = new Vue({
           zIndex: '10'
         }
       });
+      this.setActive(noteStorage.uid-1);
     },
-    makeFolder: function (note) {
+    makeFolder: function () {
       this.folders.push({
         id: folderStorage.uid++,
         name: "new folder",
-        contents: [note]
+        contents: []
       });
     },
     deleteFolder: function (folder) {
       this.folders.splice(this.folders.indexOf(folder), 1);
     },
-    pushdown: function () {
+    pushdown: function (activeId) {
       this.notes.forEach(function(element) {
         var intz = parseInt(element.location.zIndex, 10) - 1;
         element.location.zIndex = intz + '';
       });
+      this.setActive(activeId);
     },
-    addNote: function (target) {
-      console.log(JSON.stringify(target));
+    setActive: function (id) {
+      this.active = id;
+    },
+    addNoteToFolder: function (target) {
+      target.contents.push(this.active);//give folder a reference to the note
+      this.notes[this.active].folders.push(target.id);//give note ref to folder
+    },
+    showContents: function (folder) {
+      console.log(JSON.stringify(folder));
     }
   },
   watch: {
@@ -167,6 +180,11 @@ var app = new Vue({
         folderStorage.save(folders);
       },
       deep: true
+    },
+    active: {
+      handler: function (active) {
+        console.log(active);
+      }
     }
   }
 })

@@ -13,11 +13,11 @@
 		<div id="toolbar">
 			<div class="simple-flex">
 				<button id="notemaker" class="pointer" @click="makeNote">+</button>
-				<div v-for="folder in folders" @drop="addNote(folder)" class="existing folder pointer">
+				<div v-for="folder in folders" @drop.prevent="addNoteToFolder(folder)" @dragOver.prevent class="existing folder pointer">
 					<span @click="deleteFolder(folder)" class="closeX">&times;</span>
 					<input v-model="folder.name"></input>
 					<h2>{{ folder.contents.length }}</h2>
-					<p>v</p>
+					<p @click="showContents(folder)">v</p>
 				</div>
 				<div class="new folder pointer vertical-flex" @click="makeFolder">
 					<p>+</p>
@@ -33,6 +33,7 @@
 			v-for="(note, index) in notes"
 			v-on:remove="notes.splice(index, 1)"
 			v-on:pushdown="pushdown"
+			@click="setActive(index)"
 			:note="note">
 		</note-page>
 		<footer>
